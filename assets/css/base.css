@@ -1,0 +1,149 @@
+/* 
+   ==================================================
+   Base CSS - Variables, Reset & Typography
+   ==================================================
+   Breakpoints:
+   - Mobile: max-width 768px
+   - Desktop: min-width 769px
+   ==================================================
+*/
+
+:root {
+    /* Colors */
+    --bg-white: #ffffff;
+    --bg-offwhite: #f8f8f8;
+    --text-black: #0a0a0a;
+    --text-grey: #555555;
+    --text-light: #888888;
+
+    /* Frame Colors (3D Effect - DEEPER SHADOWS) */
+    --frame-color: #d0d0d0;
+    --frame-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.15),
+        0 16px 32px rgba(0, 0, 0, 0.12),
+        0 32px 64px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+    /* Glass (35% opacity) */
+    --glass-overlay-bg: rgba(5, 5, 10, 0.35);
+    --glass-dark-border: 1px solid rgba(255, 255, 255, 0.25);
+    --glass-blur: 12px;
+
+    --glass-light-bg: rgba(255, 255, 255, 0.75);
+
+    /* Accent */
+    --accent-calm: #5DADE2;
+
+    /* Typography */
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Spacing */
+    --space-section: clamp(3rem, 8vw, 6rem);
+    --space-container: clamp(1rem, 4vw, 2rem);
+}
+
+/* ==================================================
+   RESET & BASE
+================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-white);
+    color: var(--text-black);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+}
+
+h1 {
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+h3 {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==================================================
+   UTILITY CLASSES
+================================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-container);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+.max-600 {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==================================================
+   SCROLL ANIMATIONS (BIDIRECTIONAL)
+================================================== */
+
+.fade-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.fade-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-scroll.hidden-up {
+    opacity: 0;
+    transform: translateY(-20px);
+}

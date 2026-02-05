@@ -1,0 +1,15 @@
+/* 
+   ==================================================
+   Main CSS - Import Controller
+   ==================================================
+   Fotografía Terapéutica | Cristian Morales
+   
+   Breakpoints:
+   - Mobile: max-width 768px (base + mobile.css)
+   - Desktop: min-width 769px (desktop.css)
+   ==================================================
+*/
+
+@import 'base.css';
+@import 'mobile.css';
+@import 'desktop.css';

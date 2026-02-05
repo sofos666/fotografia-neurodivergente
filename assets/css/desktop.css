@@ -1,0 +1,478 @@
+/* 
+   ==================================================
+   Desktop CSS (min-width: 769px)
+   ==================================================
+   Diseño minimalista: marcos grises con sombra 3D
+   ==================================================
+*/
+
+@media (min-width: 769px) {
+
+    /* ==================================================
+       HERO IMAGE SWITCHING
+    ================================================== */
+    .hero-mobile {
+        display: none;
+    }
+
+    .hero-desktop {
+        display: block;
+    }
+
+    /* Navbar positioning for desktop (Right side) */
+    .navbar {
+        justify-content: flex-end;
+    }
+
+    /* ==================================================
+       SECTIONS
+    ================================================== */
+    .section-canvas {
+        padding: 5rem 3rem;
+    }
+
+    .container {
+        max-width: 1300px;
+    }
+
+    /* ==================================================
+       GALLERY LAYOUT (Philosophy section)
+    ================================================== */
+    .gallery-layout {
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .gallery-layout .image-frame {
+        flex: 0 0 50%;
+    }
+
+    .gallery-layout .text-block {
+        flex: 1;
+    }
+
+    .text-block h2 {
+        font-size: 2.5rem;
+    }
+
+    /* ==================================================
+       STANDALONE FRAME
+    ================================================== */
+    .standalone-frame {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* ==================================================
+       SESSION CARDS - Elegant alternating layout
+    ================================================== */
+    /* ==================================================
+       SESSION CARDS - Elegant alternating layout
+    ================================================== */
+    .session-card {
+        display: block;
+        /* No longer flex container, just a block */
+        padding: 0;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        margin-bottom: 6rem;
+        overflow: visible !important;
+        /* Fix shadow clipping */
+    }
+
+    /* Image Wrapper acts as the Flex Container now */
+    .session-image-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        flex: 1;
+        /* Take full width */
+        position: relative;
+        background: transparent;
+        /* Remove gray bg on desktop */
+        padding: 0;
+        border-radius: 0;
+        overflow: visible !important;
+        box-shadow: none !important;
+        /* Reset wrapper shadow, apply to img if needed */
+    }
+
+    /* Alternating: sessions 1,3,5,7 - image left */
+    .session-card[data-session="1"] .session-image-wrapper,
+    .session-card[data-session="3"] .session-image-wrapper,
+    .session-card[data-session="5"] .session-image-wrapper,
+    .session-card[data-session="7"] .session-image-wrapper {
+        flex-direction: row;
+    }
+
+    /* Alternating: sessions 2,4,6,8 - image right */
+    .session-card[data-session="2"] .session-image-wrapper,
+    .session-card[data-session="4"] .session-image-wrapper,
+    .session-card[data-session="6"] .session-image-wrapper,
+    .session-card[data-session="8"] .session-image-wrapper {
+        flex-direction: row-reverse;
+    }
+
+    /* Fix for invisible shadows: Override mobile overflow:hidden is done above */
+
+    /* Hide mobile title bar on desktop */
+    .session-title-bar {
+        display: none;
+    }
+
+    /* Desktop Image Styling */
+    .session-image-wrapper img {
+        flex: 0 0 58%;
+        /* Image takes 58% width */
+        width: 100%;
+        /* Fill flex basis */
+        height: auto;
+        display: block;
+
+        /* REALISTIC HIGH-END SHADOW (No Frame) */
+        box-shadow:
+            0 1px 1px rgba(0, 0, 0, 0.12),
+            0 2px 2px rgba(0, 0, 0, 0.12),
+            0 4px 4px rgba(0, 0, 0, 0.12),
+            0 8px 16px rgba(0, 0, 0, 0.12);
+
+        padding: 0;
+        background: transparent;
+        border: none;
+        border-radius: 12px;
+        margin: 0;
+        transform: none;
+    }
+
+    /* Hide loose scroll indicator on desktop */
+    .scroll-indicator {
+        display: none !important;
+    }
+
+    /* Content - No frame, left justified text */
+    .session-content-overlay {
+        flex: 1;
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: transparent;
+        color: var(--text-black);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        padding: 1rem 0;
+        overflow-y: visible;
+        border-radius: 0;
+        text-shadow: none;
+        text-align: left;
+    }
+
+    /* Session title from data-title */
+    .session-content-overlay::before {
+        content: attr(data-title);
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: var(--text-black);
+        line-height: 1.25;
+        text-align: left;
+    }
+
+    .session-quote {
+        color: var(--text-grey);
+        font-size: 1rem;
+        font-style: italic;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+
+    .session-details p {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: var(--text-grey);
+        margin-bottom: 0.8rem;
+        text-align: left;
+    }
+
+    .session-details strong {
+        color: var(--text-black);
+    }
+
+    .psycho-note {
+        border-top: 1px solid #ddd;
+        color: var(--accent-calm);
+        margin-top: 1rem;
+        padding-top: 1rem;
+        text-align: left;
+    }
+
+    /* ==================================================
+       EQUIPMENT SECTION
+    ================================================== */
+    .collage-wrapper-center {
+        display: flex;
+        align-items: flex-start;
+        gap: 2.5rem;
+    }
+
+    .collage-wrapper-center .image-frame {
+        flex: 1;
+    }
+
+    .glass-card-overlay {
+        flex: 0 0 38%;
+        width: auto;
+        margin: 0;
+        background: white;
+        backdrop-filter: none;
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+        border: 1px solid #eee;
+    }
+
+    .glass-card-overlay h3 {
+        color: var(--text-black);
+    }
+
+    .gear-list li {
+        color: var(--text-grey);
+    }
+
+    .small-note {
+        color: var(--text-grey);
+    }
+
+    /* ==================================================
+       AERIAL SHOWCASE
+    ================================================== */
+    .aerial-caption {
+        max-width: 380px;
+        padding: 1.5rem 2rem;
+    }
+
+    /* ==================================================
+       CTA SECTION
+    ================================================== */
+    .cta-section {
+        padding: 5rem 3rem;
+    }
+
+    .cta-section .container {
+        max-width: 700px;
+    }
+
+    /* ==================================================
+       FOOTER
+    ================================================== */
+    /* ==================================================
+       FOOTER & LAYOUT UPDATES
+    ================================================== */
+    .mobile-only-section {
+        display: none !important;
+    }
+
+    .desktop-only {
+        display: block !important;
+    }
+
+    .footer-premium {
+        min-height: 500px;
+        padding-top: 6rem;
+    }
+
+    .footer-grid {
+        display: flex;
+        align-items: flex-start;
+        /* Align top */
+        justify-content: center;
+        gap: 2rem;
+        position: relative;
+        z-index: 5;
+    }
+
+    .footer-bg-container {
+        /* Ensure bg stays full */
+    }
+
+    .glass-footer-card {
+        flex: 1;
+        max-width: 500px;
+        padding: 3rem;
+        text-align: left;
+        /* Alignment reset */
+    }
+
+    /* Footer Philosophy Card specific styles */
+    .footer-philosophy h3 {
+        color: var(--accent-calm);
+        margin-bottom: 1rem;
+    }
+
+    .footer-philosophy p {
+        font-size: 0.95rem;
+        opacity: 0.9;
+    }
+
+    /* Footer Contact Card updates */
+    .footer-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-socials-list {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .social-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .social-label {
+        font-weight: 600;
+        opacity: 0.8;
+        display: inline-block;
+    }
+
+    .social-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        text-decoration: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        transition: background 0.2s;
+    }
+
+    .social-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .social-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* ==================================================
+       AERIAL CAPTION POSITIONING
+    ================================================== */
+    .aerial-showcase {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    /* Force frame to fit image exactly (remove 16/9 ratio constraint) */
+    .aerial-frame-fit {
+        aspect-ratio: auto !important;
+        height: auto !important;
+        display: block;
+        /* Ensure it wraps content */
+    }
+
+    .aerial-frame-fit img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .aerial-caption {
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        /* Indented INSIDE the frame */
+        max-width: 320px;
+        padding: 1.5rem;
+        background: rgba(20, 20, 25, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: white;
+        z-index: 10;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Footer Quiz Card specific styles */
+    .footer-quiz h3 {
+        color: var(--accent-calm);
+        margin-bottom: 1rem;
+    }
+
+    .footer-quiz p {
+        font-size: 0.95rem;
+        opacity: 0.9;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-quiz .cta-button-alt {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ==================================================
+   DESKTOP LARGE (1024px+)
+================================================== */
+@media (min-width: 1024px) {
+
+    .hero-glass-card {
+        position: absolute;
+        bottom: 8%;
+        left: 5%;
+        width: auto;
+        max-width: 550px;
+        border-radius: 16px;
+        background: rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-card-logo {
+        height: 50px;
+        /* Adjust size */
+        width: auto;
+        display: block;
+        margin-bottom: 1.5rem;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    .session-card {
+        gap: 3rem;
+    }
+
+    .session-image-wrapper {
+        flex: 0 0 58%;
+    }
+
+    .session-content-overlay::before {
+        font-size: 1.8rem;
+    }
+}
+
+/* ==================================================
+   ACCESSIBILITY
+================================================== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

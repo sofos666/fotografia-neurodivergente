@@ -1,0 +1,1044 @@
+/* 
+   ==================================================
+   White Premium Gallery v7
+   ==================================================
+   SESIONES (no módulos)
+   Título ENCIMA de la foto (fuera), contenido se despliega SOBRE la foto
+   Glass muy transparente (35%)
+   ==================================================
+*/
+
+:root {
+    /* Colors */
+    --bg-white: #ffffff;
+    --bg-offwhite: #f8f8f8;
+    --text-black: #0a0a0a;
+    --text-grey: #555555;
+    --text-light: #888888;
+
+    /* Frame Colors (3D Effect - DEEPER SHADOWS) */
+    --frame-color: #d0d0d0;
+    --frame-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.15),
+        0 16px 32px rgba(0, 0, 0, 0.12),
+        0 32px 64px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+    /* Glass (35% opacity) */
+    --glass-overlay-bg: rgba(5, 5, 10, 0.35);
+    --glass-dark-border: 1px solid rgba(255, 255, 255, 0.25);
+    --glass-blur: 12px;
+
+    --glass-light-bg: rgba(255, 255, 255, 0.75);
+
+    /* Accent */
+    --accent-calm: #5DADE2;
+
+    /* Typography */
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Spacing */
+    --space-section: clamp(3rem, 8vw, 6rem);
+    --space-container: clamp(1rem, 4vw, 2rem);
+}
+
+/* ==================================================
+   RESET & BASE (MÓVIL FIRST)
+================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-white);
+    color: var(--text-black);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+}
+
+h1 {
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+h3 {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==================================================
+   MÓVIL: FLOATING WHATSAPP BUTTON
+================================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+}
+
+/* ==================================================
+   MÓVIL: NAVIGATION (sin Agendar)
+================================================== */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.25rem var(--space-container);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 100;
+    color: white;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ==================================================
+   MÓVIL: HERO SECTION
+================================================== */
+.gallery-hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-image-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-mobile {
+    display: block;
+}
+
+.hero-desktop {
+    display: none;
+}
+
+.hero-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.hero-glass-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: clamp(1.5rem, 5vw, 3rem);
+    padding-bottom: clamp(2rem, 6vw, 4rem);
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: white;
+}
+
+.hero-sub {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: white;
+    color: var(--text-black);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button-alt {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--text-black);
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button-alt:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+/* ==================================================
+   MÓVIL: SECTIONS BASE
+================================================== */
+.section-canvas {
+    padding: var(--space-section) var(--space-container);
+}
+
+.gray-bg {
+    background-color: var(--bg-offwhite);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.eyebrow {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.max-600 {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* ==================================================
+   MÓVIL: IMAGE FRAMES
+================================================== */
+.image-frame {
+    position: relative;
+    overflow: hidden;
+    background: var(--frame-color);
+    padding: 8px;
+    box-shadow: var(--frame-shadow);
+}
+
+.image-frame.frame-3d {
+    border: 1px solid #c8c8c8;
+}
+
+.image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.large-vertical {
+    aspect-ratio: 3/4;
+}
+
+.landscape-hero {
+    aspect-ratio: 16/9;
+}
+
+/* ==================================================
+   MÓVIL: GALLERY LAYOUT (Philosophy)
+================================================== */
+.gallery-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.text-block h3 {
+    color: var(--text-grey);
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+/* ==================================================
+   MÓVIL: EQUIPMENT SECTION
+================================================== */
+.collage-wrapper-center {
+    position: relative;
+    margin-top: 2rem;
+}
+
+.glass-card-overlay {
+    background: var(--glass-light-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.1);
+    margin-top: -2rem;
+    position: relative;
+    z-index: 5;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gear-list {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.gear-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.small-note {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #777;
+    margin-top: 1rem;
+}
+
+/* ==================================================
+   MÓVIL: SESSION CARDS (Título ENCIMA de la foto)
+================================================== */
+.section-title {
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--text-grey);
+    margin-bottom: 3rem;
+}
+
+.session-card {
+    position: relative;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--frame-color);
+    padding: 6px;
+    box-shadow: var(--frame-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+/* MÓVIL: Title Bar ENCIMA de la foto (fuera del wrapper de imagen) */
+.session-title-bar {
+    padding: 1rem 1.25rem;
+    background: rgba(30, 30, 35, 0.95);
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-body);
+    border-radius: 8px 8px 0 0;
+    transition: background 0.3s ease;
+    border: none;
+}
+
+.session-title-bar:hover {
+    background: rgba(40, 40, 45, 1);
+}
+
+.session-num {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.9;
+    white-space: nowrap;
+}
+
+.session-title-text {
+    flex: 1;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.toggle-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.7;
+    transition: transform 0.3s ease;
+}
+
+.session-card.active .toggle-icon {
+    transform: rotate(45deg);
+}
+
+/* MÓVIL: Image Wrapper (foto en su proporción natural) */
+.session-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 8px 8px;
+}
+
+.session-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* (Flecha movida al content overlay) */
+
+/* MÓVIL: Content Overlay (se despliega SOBRE la foto) */
+.session-content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--glass-overlay-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-dark-border);
+    color: white;
+    padding: 1.5rem 1.25rem;
+    overflow-y: auto;
+    z-index: 2;
+    border-radius: 0 0 8px 8px;
+
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.session-card.active .session-content-overlay {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Flecha indicadora fija en la tarjeta */
+.scroll-indicator {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    animation: bounce-arrow 1.5s ease-in-out infinite;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+    transform: scale(0);
+}
+
+/* Solo visible cuando la sesión está activa */
+.scroll-indicator {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.session-card.active .scroll-indicator {
+    opacity: 1;
+    visibility: visible;
+}
+
+.session-card.active .scroll-indicator.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes bounce-arrow {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(4px);
+    }
+}
+
+.scroll-indicator.hidden {
+    animation: none;
+}
+
+.session-quote {
+    font-style: italic;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    opacity: 0.95;
+}
+
+.session-details p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 0.9rem;
+}
+
+.session-details strong {
+    color: white;
+}
+
+.psycho-note {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--accent-calm);
+    text-shadow: none;
+}
+
+/* ==================================================
+   MÓVIL: AERIAL SHOWCASE
+================================================== */
+.aerial-showcase {
+    position: relative;
+}
+
+.aerial-caption {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    padding: 1.25rem 1.75rem;
+    max-width: 280px;
+}
+
+.glass-dark {
+    background: var(--glass-overlay-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--glass-dark-border);
+    border-radius: 8px;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.aerial-caption h3 {
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.aerial-caption p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* ==================================================
+   MÓVIL: CTA SECTION
+================================================== */
+.cta-section {
+    background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
+}
+
+.cta-section h2 {
+    margin-bottom: 0.5rem;
+}
+
+.cta-section p {
+    color: var(--text-grey);
+    margin-bottom: 1.5rem;
+}
+
+/* ==================================================
+   MÓVIL: QUIZ MODAL
+================================================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    max-width: 550px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #f0f0f0;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.modal-close:hover {
+    background: #e0e0e0;
+}
+
+.modal-content h2 {
+    margin-bottom: 1.5rem;
+    padding-right: 3rem;
+}
+
+.quiz-form-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.quiz-form-modal .question-box {
+    border: none;
+    padding: 0;
+}
+
+.quiz-form-modal legend {
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.quiz-form-modal label {
+    display: block;
+    padding: 0.75rem 1rem;
+    margin: 0.4rem 0;
+    background: #f5f5f5;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.quiz-form-modal label:hover {
+    background: #eee;
+}
+
+.quiz-form-modal input[type="radio"] {
+    margin-right: 0.75rem;
+    accent-color: var(--accent-calm);
+}
+
+.quiz-form-modal label:has(input:checked) {
+    background: var(--accent-calm);
+    color: white;
+}
+
+.quiz-form-modal .cta-button {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* ==================================================
+   MÓVIL: FOOTER
+================================================== */
+.footer-premium {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-section) var(--space-container);
+}
+
+.footer-bg-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.footer-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: auto;
+}
+
+.footer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.glass-footer-card {
+    position: relative;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    color: white;
+    max-width: 420px;
+}
+
+.glass-footer-card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.location-link {
+    display: inline-block;
+    color: var(--accent-calm);
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--accent-calm);
+    margin-bottom: 1rem;
+}
+
+.footer-email {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.profile-btn {
+    display: inline-block;
+    margin: 0.5rem 0 1rem;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.profile-btn:hover {
+    background: white;
+    color: var(--text-black);
+}
+
+.footer-socials {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-socials a {
+    color: white;
+    opacity: 0.8;
+    font-size: 0.85rem;
+    transition: opacity 0.3s ease;
+}
+
+.footer-socials a:hover {
+    opacity: 1;
+}
+
+/* ==================================================
+   MÓVIL: ANIMATIONS
+================================================== */
+.fade-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-scroll.hidden-up {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+
+/* ==================================================
+   ==================================================
+   DESKTOP: ESTILOS (768px+)
+   ==================================================
+   ==================================================
+*/
+@media (min-width: 768px) {
+
+    /* DESKTOP: Hero image switching */
+    .hero-mobile {
+        display: none;
+    }
+
+    .hero-desktop {
+        display: block;
+    }
+
+    /* DESKTOP: Gallery Layout */
+    .gallery-layout {
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .gallery-layout .image-frame {
+        flex: 0 0 45%;
+    }
+
+    .gallery-layout .text-block {
+        flex: 1;
+    }
+
+    /* DESKTOP: Equipment */
+    .glass-card-overlay {
+        width: 60%;
+        margin-left: auto;
+        margin-right: 0;
+        margin-top: -4rem;
+    }
+
+    /* DESKTOP: Session Cards (lado a lado) */
+    .session-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr;
+        padding: 0;
+        background: white;
+        border: 1px solid #e0e0e0;
+    }
+
+    /* DESKTOP: Title bar spans first column */
+    .session-title-bar {
+        display: none;
+    }
+
+    .session-image-wrapper {
+        grid-column: 1;
+        grid-row: 1 / -1;
+        aspect-ratio: 4/3;
+        padding: 8px;
+        background: var(--frame-color);
+        border-radius: 0;
+    }
+
+    .session-vertical .session-image-wrapper,
+    .session-image-wrapper.vertical {
+        aspect-ratio: 3/4;
+    }
+
+    .session-full .session-image-wrapper,
+    .session-image-wrapper.full-photo {
+        aspect-ratio: 16/9;
+    }
+
+    .session-image-wrapper.full-photo img {
+        object-fit: cover;
+        background: transparent;
+    }
+
+    /* DESKTOP: Content siempre visible */
+    .session-content-overlay {
+        position: relative;
+        grid-column: 2;
+        grid-row: 1 / -1;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: white;
+        color: var(--text-black);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        padding: 1.5rem 2rem;
+        overflow-y: visible;
+        border-radius: 0;
+        text-shadow: none;
+    }
+
+    .session-content-overlay::before {
+        content: attr(data-title);
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: var(--text-black);
+    }
+
+    .session-quote {
+        color: var(--text-grey);
+        border-bottom-color: #eee;
+    }
+
+    .session-details strong {
+        color: var(--text-black);
+    }
+
+    .psycho-note {
+        border-top-color: #eee;
+    }
+}
+
+/* ==================================================
+   DESKTOP LARGE (1024px+)
+================================================== */
+@media (min-width: 1024px) {
+
+    .hero-glass-card {
+        position: absolute;
+        bottom: 8%;
+        left: 5%;
+        width: auto;
+        max-width: 550px;
+        border-radius: 16px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ==================================================
+   ACCESSIBILITY
+================================================== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==================================================
+   PRICING NOTE
+================================================== */
+.pricing-note {
+    margin-top: 4rem;
+    padding: 2rem;
+    background: var(--bg-offwhite);
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.pricing-note p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-black);
+}
+
+.pricing-note p.small {
+    font-size: 0.9rem;
+    color: var(--text-grey);
+    margin-bottom: 0;
+}
