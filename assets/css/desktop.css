@@ -127,8 +127,10 @@
     .session-image-wrapper img {
         flex: 0 0 58%;
         /* Image takes 58% width */
-        width: 100%;
-        /* Fill flex basis */
+        width: 58%;
+        /* Adjusted for Chrome consistency */
+        max-width: 58%;
+        /* Enforce constraint */
         height: auto;
         display: block;
 
