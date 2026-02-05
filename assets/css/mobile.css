@@ -144,6 +144,38 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+.cta-button-outline {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .cta-button-outline {
+        margin-top: 0;
+        margin-left: 1rem;
+    }
+
+    .mobile-break {
+        display: none;
+    }
+}
+
+.cta-button-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
 .cta-button-alt {
     display: inline-block;
     padding: 1rem 2.5rem;
