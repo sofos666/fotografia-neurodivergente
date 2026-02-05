@@ -175,6 +175,10 @@
         border-radius: 0;
         text-shadow: none;
         text-align: left;
+
+        /* CRITICAL FIX: Reset accordion hidden state from mobile */
+        max-height: none !important;
+        display: block !important;
     }
 
     /* Session title from data-title */
@@ -436,7 +440,8 @@
 
     .hero-glass-card {
         position: absolute;
-        bottom: 8%;
+        /* moved to top to align with right logo */
+        top: 2rem;
         left: 5%;
         width: auto;
         max-width: 550px;
@@ -445,12 +450,25 @@
     }
 
     .hero-card-logo {
-        height: 50px;
-        /* Adjust size */
+        /* User requested to remove inside logo */
+        display: none !important;
+    }
+
+    /* Target the RIGHT logo (on navbar) to make it bigger and add shadow */
+    .logo-img {
+        height: 70px;
+        /* Reduced to ~half of 75px as requested */
         width: auto;
-        display: block;
-        margin-bottom: 1.5rem;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        /* High contrast shadow to lift logo off background photo */
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.3));
+        z-index: 100;
+        position: relative;
+        top: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+        transform: scale(1.05);
     }
 
     .session-card {
