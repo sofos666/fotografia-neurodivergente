@@ -58,10 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleSession(card) {
         const isActive = card.classList.contains('active');
 
-        // Close all others (accordion)
+        // Close all others (accordion) - EXCLUSIVE
         sessionCards.forEach(otherCard => {
             if (otherCard !== card) {
                 otherCard.classList.remove('active');
+                // Ensure scroll indicator is reset if we added it back
+                const otherIndicator = otherCard.querySelector('.scroll-indicator');
+                if (otherIndicator) otherIndicator.classList.add('hidden');
             }
         });
 
@@ -99,16 +102,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // Scroll to the card so the content is visible at the top
+            // Scroll to the card so the IMAGE is at the top
+            // Wait slightly for DOM expansion
             setTimeout(() => {
                 const cardRect = card.getBoundingClientRect();
-                const scrollTop = window.pageYOffset + cardRect.top - 20;
+                // We want the card top to be near the top of the viewport
+                // Adjusting offset: -60px leaves some breathing room for the navbar
+                const scrollTop = window.pageYOffset + cardRect.top - 60;
 
                 window.scrollTo({
                     top: scrollTop,
                     behavior: 'smooth'
                 });
-            }, 150);
+            }, 300); /* Increased timeout slightly to ensure layout reflow is complete */
         }
     }
 
