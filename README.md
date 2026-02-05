@@ -1,59 +1,32 @@
-# Fotografía Terapéutica | Cristian Morales
+# Fotografía Terapéutica - Neurodivergente
 
-Curso personalizado de fotografía para mentes neurodivergentes en Medellín.
+Una experiencia web inmersiva diseñada para ofrecer cursos de fotografía terapéutica en Medellín, con un enfoque especial en mentes neurodivergentes.
 
-## 🎯 Descripción
+## Tecnologías
 
-Landing page para un curso de fotografía con enfoque psico-artístico, diseñado especialmente para personas con pensamiento visual y mentes neurodivergentes.
+- **HTML5 Semántico**: Estructura accesible y clara.
+- **CSS3 Moderno**: Animaciones fluidas, scroll bidireccional, diseño responsivo (Mobile First) y efectos de vidrio (Glassmorphism).
+- **JavaScript Vanilla**: Lógica ligera para modales, navegación y efectos de scroll sin dependencias pesadas.
 
-## 🛠️ Tecnologías
+## Cómo desplegar en Vercel (Paso a Paso)
 
-- **HTML5** - Estructura semántica
-- **CSS3** - Estilos con CSS Variables, Flexbox, Grid
-- **JavaScript** - Interactividad (modales, acordeones, scroll animations)
-- **Responsive Design** - Mobile-first (breakpoint: 768px)
+Este proyecto está listo para ser desplegado gratuitamente en Vercel.
 
-## 📁 Estructura del Proyecto
+1.  **Crea una cuenta en Vercel**: Ve a [vercel.com](https://vercel.com) y regístrate (puedes usar tu cuenta de GitHub).
+2.  **Nuevo Proyecto**: En tu panel de control (Dashboard), haz clic en el botón **"Add New..."** y selecciona **"Project"**.
+3.  **Importar desde GitHub**: Verás una lista de tus repositorios. Busca `fotografia-neurodivergente` y haz clic en el botón **"Import"**.
+4.  **Configuración**:
+    *   **Framework Preset**: Déjalo en "Other" (Vercel detecta automáticamente que es HTML/CSS/JS).
+    *   **Root Directory**: Déjalo en `./` (la raíz).
+5.  **Desplegar**: Haz clic en el botón **"Deploy"**.
+6.  **¡Listo!**: En unos segundos, Vercel te dará una URL única (ejemplo: `fotografia-neurodivergente.vercel.app`) donde tu sitio estará vivo.
 
-```
-propuestas/
-├── index.html              # Página principal
-├── README.md              # Este archivo
-├── .gitignore             # Archivos ignorados por Git
-└── assets/
-    ├── css/
-    │   ├── main.css       # Importa todos los estilos
-    │   ├── base.css       # Variables, reset, tipografía
-    │   ├── mobile.css     # Estilos móvil (max-width: 768px)
-    │   └── desktop.css    # Estilos desktop (min-width: 769px)
-    ├── js/
-    │   └── main.js        # JavaScript principal
-    └── images/
-        └── [fotos del curso]
-```
+## Estructura del Proyecto
 
-## 🚀 Despliegue
-
-Este proyecto está configurado para desplegarse en **Vercel**:
-
-1. Conectar repositorio de GitHub
-2. Vercel detectará automáticamente que es un sitio estático
-3. Despliegue automático en cada push
-
-## 📱 Breakpoints
-
-| Dispositivo | Viewport | Archivo CSS |
-|-------------|----------|-------------|
-| iPhone 15 Pro Max | 430px | mobile.css |
-| Samsung Galaxy S24 Ultra | 384px | mobile.css |
-| iPad Pro | 1024px | desktop.css |
-
-## 📧 Contacto
-
-- **Email:** cristianmoralesve@gmail.com
-- **WhatsApp:** +57 301 497 5393
-- **Web:** [moralespsicologia.vercel.app](https://moralespsicologia.vercel.app)
+*   `index.html`: Página principal.
+*   `assets/css/`: Estilos divididos en `mobile.css`, `desktop.css` y `main.css`.
+*   `assets/js/`: Lógica principal en `main.js`.
+*   `assets/images/`: Recursos gráficos optimizados.
 
 ---
-
-© 2026 Cristian Morales. Todos los derechos reservados.
+Desarrollado por Cristian Morales.
